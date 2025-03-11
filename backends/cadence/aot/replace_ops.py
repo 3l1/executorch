@@ -1863,6 +1863,10 @@ class ReplaceSingleElementTensorArgumentsFromFullOpWithScalarPass(ExportPass):
             exir_ops.edge.cadence.quantized_relu.per_tensor,
             [1, 3, 4],
         ),
+        exir_ops.edge.cadence.im2row: (
+            exir_ops.edge.cadence.im2row.per_tensor,
+            [5],
+        ),
     }
 
     def call_operator(self, op, args, kwargs, meta):

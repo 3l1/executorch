@@ -126,6 +126,10 @@ class BaseTOSASupportList(OperatorSupportBase):
         supported = node.op == "call_function" and node.target in [
             exir_ops.edge.aten.abs.default,
             exir_ops.edge.aten.add.Tensor,
+            exir_ops.edge.aten.logical_and.default,
+            exir_ops.edge.aten.logical_or.default,
+            exir_ops.edge.aten.logical_xor.default,
+            exir_ops.edge.aten.logical_not.default,
             exir_ops.edge.aten.bitwise_and.Tensor,
             exir_ops.edge.aten.bitwise_or.Tensor,
             exir_ops.edge.aten.bitwise_xor.Tensor,
@@ -196,16 +200,20 @@ class EthosU55NotSupported(OperatorSupportBase):
     """
 
     unsupported_ops = [
-        exir_ops.edge.aten.bitwise_and.Tensor,
-        exir_ops.edge.aten.bitwise_or.Tensor,
-        exir_ops.edge.aten.bitwise_xor.Tensor,
-        exir_ops.edge.aten.amax.default,
-        exir_ops.edge.aten.amin.default,
-        exir_ops.edge.aten.eq.Tensor,
-        exir_ops.edge.aten.ge.Tensor,
-        exir_ops.edge.aten.gt.Tensor,
-        exir_ops.edge.aten.le.Tensor,
-        exir_ops.edge.aten.lt.Tensor,
+          exir_ops.edge.aten.bitwise_and.Tensor,
+          exir_ops.edge.aten.bitwise_or.Tensor,
+          exir_ops.edge.aten.bitwise_xor.Tensor,
+          exir_ops.edge.aten.logical_and.default,
+          exir_ops.edge.aten.logical_or.default,
+          exir_ops.edge.aten.logical_xor.default,
+          exir_ops.edge.aten.logical_not.default,
+          exir_ops.edge.aten.amax.default,
+          exir_ops.edge.aten.amin.default,
+          exir_ops.edge.aten.eq.Tensor,
+          exir_ops.edge.aten.ge.Tensor,
+          exir_ops.edge.aten.gt.Tensor,
+          exir_ops.edge.aten.le.Tensor,
+          exir_ops.edge.aten.lt.Tensor,
     ]
 
     def __init__(self, reporter: WhyNoPartitionReporter):

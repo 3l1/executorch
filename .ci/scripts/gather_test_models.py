@@ -8,6 +8,7 @@
 import itertools
 import json
 import os
+import sys
 from typing import Any
 
 from examples.models import MODEL_NAME_TO_MODEL
@@ -54,6 +55,12 @@ def parse_args() -> Any:
     from argparse import ArgumentParser
 
     parser = ArgumentParser("Gather all models to test on CI for the target OS")
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        default=False,
+        help="output json",
+    )
     parser.add_argument(
         "--target-os",
         type=str,
@@ -176,7 +183,10 @@ def export_models_for_ci() -> dict[str, dict]:
 
         models["include"].append(record)
 
-    set_output("models", json.dumps(models))
+    if args.json:
+        print(json.dumps(models))
+    else:
+        set_output("models", json.dumps(models))
 
 
 if __name__ == "__main__":
